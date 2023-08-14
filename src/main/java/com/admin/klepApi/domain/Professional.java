@@ -46,4 +46,12 @@ public class Professional implements Serializable {
     public void setHealthPlans(List<HealthPlan> healthPlans) {
         this.healthPlans = healthPlans;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
