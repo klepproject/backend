@@ -2,12 +2,11 @@ package com.admin.klepApi.controllers;
 
 import com.admin.klepApi.domain.Patient;
 import com.admin.klepApi.services.PatientService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +32,14 @@ public class PatientController {
         return patient.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<Patient> findByPhone() {
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Patient create(@Valid @RequestBody Patient patient) {
+        return patientService.create(patient);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> delete(@PathVariable Long patientId) {
 
     }
 
