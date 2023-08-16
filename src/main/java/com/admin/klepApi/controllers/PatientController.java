@@ -26,7 +26,7 @@ public class PatientController {
     }
 
     @GetMapping
-    public ResponseEntity<Patient> findById(@PathVariable Long patientId) {
+    public ResponseEntity<Patient> findById(@PathVariable Integer patientId) {
         Optional<Patient> patient = patientService.findById(patientId);
 
         return patient.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -39,8 +39,10 @@ public class PatientController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> delete(@PathVariable Long patientId) {
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> delete(@PathVariable Integer patientId) {
+        patientService.delete(patientId);
+        return ResponseEntity.noContent().build();
     }
 
 }
