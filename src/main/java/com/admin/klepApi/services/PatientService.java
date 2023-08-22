@@ -3,9 +3,9 @@ package com.admin.klepApi.services;
 import com.admin.klepApi.domain.Patient;
 import com.admin.klepApi.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Service
 public class PatientService {
@@ -19,5 +19,13 @@ public class PatientService {
 
     public void delete(Integer patientId) {
         patientRepository.deleteById(patientId);
+    }
+
+    public List<Patient> findAll(){
+        return patientRepository.findAll();
+    }
+
+    public Patient findById(Integer patientId) {
+        return patientRepository.findById();
     }
 }

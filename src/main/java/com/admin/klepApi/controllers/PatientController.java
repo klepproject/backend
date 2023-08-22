@@ -27,7 +27,7 @@ public class PatientController {
 
     @GetMapping
     public ResponseEntity<Patient> findById(@PathVariable Integer patientId) {
-        Optional<Patient> patient = patientService.findById(patientId);
+        Optional<Patient> patient = Optional.ofNullable(patientService.findById(patientId)); //to check this line
 
         return patient.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
