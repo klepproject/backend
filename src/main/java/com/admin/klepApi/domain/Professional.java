@@ -17,6 +17,10 @@ public class Professional implements Serializable {
     @ManyToMany(mappedBy = "professionals")
     List<HealthPlan> healthPlans;
 
+
+    public Professional() {
+    }
+
     public Professional(String name, String cpf_cnpj, List<HealthPlan> healthPlans) {
         this.name = name;
         this.cpf_cnpj = cpf_cnpj;
