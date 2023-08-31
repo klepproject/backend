@@ -25,6 +25,13 @@ public class HealthPlanController {
         return ResponseEntity.ok().body(healthPlans);
     }
 
+    @GetMapping(value = "{id}")
+    public ResponseEntity<HealthPlan> findById(@PathVariable Integer id){
+        HealthPlan healthPlan = healthPlanService.findById(id);
+
+        return ResponseEntity.ok().body(healthPlan);
+    }
+
     @PostMapping
     public ResponseEntity<HealthPlan> insert(@Valid @RequestBody HealthPlan healthPlan){
         HealthPlan newHealthPlan = healthPlanService.insert(healthPlan);
