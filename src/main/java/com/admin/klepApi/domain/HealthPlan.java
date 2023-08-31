@@ -25,6 +25,10 @@ public class HealthPlan implements Serializable {
     )
     private List<Professional> professionals;
 
+
+    public HealthPlan() {
+    }
+
     public HealthPlan(String name, List<Patient> patients, List<Professional> professionals) {
         this.name = name;
         this.patients = patients;
@@ -39,19 +43,27 @@ public class HealthPlan implements Serializable {
         this.name = name;
     }
 
-    public List<Patient> getPacientes() {
-        return patients;
-    }
-
-    public void setPacientes(List<Patient> patients) {
-        this.patients = patients;
-    }
-
     public List<Professional> getProfessionals() {
         return professionals;
     }
 
     public void setProfessionals(List<Professional> professionals) {
         this.professionals = professionals;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
     }
 }
