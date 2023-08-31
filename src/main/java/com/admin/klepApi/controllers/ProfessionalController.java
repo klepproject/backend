@@ -25,12 +25,19 @@ public class ProfessionalController {
         return ResponseEntity.ok().body(professionals);
     }
 
+    @GetMapping(value = "{id}")
+    public ResponseEntity<Professional> findById(@PathVariable Integer id){
+        Professional professional = professionalService.findById(id);
+
+        return ResponseEntity.ok().body(professional);
+    }
+
     @PostMapping
     public ResponseEntity<Professional> insert(@RequestBody @Valid Professional professional){
         professionalService.insert(professional);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(professional.getId())
                 .toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(professional);
     }
 }
