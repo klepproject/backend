@@ -1,6 +1,7 @@
 package com.admin.klepApi.services;
 
 import com.admin.klepApi.domain.HealthPlan;
+import com.admin.klepApi.dto.HealthPlanUpdateDTO;
 import com.admin.klepApi.repository.HealthPlanRepository;
 import com.admin.klepApi.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,13 @@ public class HealthPlanService {
 
     public HealthPlan findById(Integer id){
         return healthPlanRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("HealthPlan not found! Id: " + id));
+    }
+
+    public void update(HealthPlanUpdateDTO healthPlanUpdateDTO, Integer id) {
+        HealthPlan oldHealthPlan = findById(id);
+        
+        oldHealthPlan.setName(healthPlanUpdateDTO.getName());
+
+        healthPlanRepository.save(oldHealthPlan);
     }
 }

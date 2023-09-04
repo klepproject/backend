@@ -1,6 +1,8 @@
 package com.admin.klepApi.controllers;
 
 import com.admin.klepApi.domain.HealthPlan;
+import com.admin.klepApi.dto.HealthPlanUpdateDTO;
+import com.admin.klepApi.dto.ProfessionalUpdateDTO;
 import com.admin.klepApi.services.HealthPlanService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +40,12 @@ public class HealthPlanController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newHealthPlan.getId())
                 .toUri();
         return ResponseEntity.created(uri).body(newHealthPlan);
+    }
+
+    @PutMapping(value = "{id}")
+    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody @Valid HealthPlanUpdateDTO healthPlanUpdateDTO){
+        healthPlanService.update(healthPlanUpdateDTO, id);
+
+        return ResponseEntity.ok().body(null);
     }
 }

@@ -1,6 +1,7 @@
 package com.admin.klepApi.controllers;
 
 import com.admin.klepApi.domain.Professional;
+import com.admin.klepApi.dto.ProfessionalUpdateDTO;
 import com.admin.klepApi.services.ProfessionalService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,12 @@ public class ProfessionalController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(professional.getId())
                 .toUri();
         return ResponseEntity.created(uri).body(professional);
+    }
+
+    @PutMapping(value = "{id}")
+    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody @Valid ProfessionalUpdateDTO professional){
+        professionalService.update(professional, id);
+
+        return ResponseEntity.ok().body(null);
     }
 }
